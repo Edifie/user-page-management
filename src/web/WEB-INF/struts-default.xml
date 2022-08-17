@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+        "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+
+    <form-beans>
+        <!-- Import -->
+        <!--<form-bean type="pt.estgp.estgweb.web.form.announcements.AnnouncementsForm" name="AnnouncementsForm"/>-->
+        <!--<form-bean type="com.innovkey.opt.imports.web.ImportForm" name="ImportForm"/>-->
+    </form-beans>
+
+    <global-exceptions>
+
+    </global-exceptions>
+
+    <global-forwards>
+
+    </global-forwards>
+
+
+    <action-mappings>
+        <!--Portal Forward-->
+        <action path="/home" forward="page.home"/>
+        <action path="/login" forward="page.login"/>
+        <action path="/addUser" forward="page.addUser"/>
+        <action path="/listUser" forward="page.listUser"/>
+    </action-mappings>
+    <!--20 Megabytes upload max size can go until 700 MB nao se sabe porque
+        pontos possiveis de ajuste Fazer um UPLOAD Servlet
+        ver mais em app.properties max.file.size.upload.mbytes
+
+        aqui esta 50 para permitir ao App controlar e poder ser aumentado nao sendo afetado por este parametro
+    -->
+    <controller maxFileSize="50971520" processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+    <message-resources parameter="MessageResources"/>
+    <!--<message-resources parameter="MessageResources" factory="pt.estgp.estgweb.domain.utils.ReloadablePropertyMessageResourcesFactory"/>-->
+
+
+    <plug-in className="org.apache.struts.tiles.TilesPlugin">
+        <set-property property="definitions-config" value="/WEB-INF/tiles-default.xml"/>
+    </plug-in>
+
+
+</struts-config>

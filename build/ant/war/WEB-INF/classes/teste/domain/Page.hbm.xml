@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping
+        PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+
+    <class name="teste.domain.Page" table="Page" abstract="true">
+
+        <meta attribute="scope-class">
+            public abstract
+        </meta>
+
+        <id name="id" type="long">
+            <generator class="native"/>
+        </id>
+        <discriminator column="discriminator"/>
+        <property name="tittle" column="tittle" type="string"/>
+        <property name="roles" column="roles" type="string"/>
+
+        <many-to-one name="user" class="teste.domain.User" column="username"/>
+
+        <set name="sections" cascade="none">
+            <key column="page"/>
+            <one-to-many class="teste.domain.Section"/>
+        </set>
+
+        <subclass name="teste.domain.PageImpl" discriminator-value="PageImpl"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="ant">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/ant/jasper-compiler.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/ant/catalina-ant.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/ant/catalina-deployer.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/ant/jasper-runtime.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/ant/servlet-api.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

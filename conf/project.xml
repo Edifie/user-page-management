@@ -1,0 +1,5 @@
+<Context path="/TrabalhoES" docBase="/Users/dilantaskin/Desktop/2Semestre/TrabalhoES/build/ant/war" debug="0">
+    <!--  Link to the user database we will get roles from  -->
+    <ResourceLink name="users" global="UserDatabase" type="org.apache.catalina.UserDatabase"/>
+    <Logger className="org.apache.catalina.logger.FileLogger" prefix="project_log." suffix=".txt" timestamp="true"/>
+</Context>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+        "http://struts.apache.org/dtds/tiles-config_1_1.dtd">
+
+<tiles-definitions>
+
+    <!-- Templates Globais Tiles Definition -->
+
+    <definition name="base.definition" template="/layout1.jsp">
+        <put name="title" value="x"/>
+        <put name="header" value="header.jsp"/>
+        <put name="footer" value="footer.jsp" />
+    </definition>
+
+
+    <definition name="page.home" extends="base.definition">
+        <put name="title" value="User Management"/>
+        <put name="body" value="home.jsp"/>
+    </definition>
+
+    <definition name="page.login" extends="base.definition">
+        <put name="title" value="Autenticação"/>
+        <put name="body" value="login.jsp"/>
+    </definition>
+
+
+   <definition name="page.addUser" extends="base.definition">
+       <put name="tittle" value="Add User"/>
+       <put name="body" value="addUser.jsp"/>
+   </definition>
+
+
+    <definition name="page.listUser" extends="base.definition">
+        <put name="title" value="List User"/>
+        <put name="body" value="listUser.jsp"/>
+    </definition>
+
+
+
+
+
+</tiles-definitions>

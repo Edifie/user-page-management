@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+<project default="deploy" basedir=".">
+
+	<property file="local.properties"/>
+	<property file="build.properties"/>
+
+	<path id="pathref">
+
+		<fileset dir="lib/hibernate">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="lib/mysql">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="lib/commons">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="lib/aspectj">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="lib/log4j">
+			<include name="*.jar"/>
+		</fileset>
+
+		<fileset dir="lib/json">
+			<include name="*.jar"/>
+		</fileset>
+
+
+
+		<fileset dir="${TOMCAT_HOME}/lib">
+			<include name="servlet-api.jar"/>
+		</fileset>
+
+
+	</path>
+
+	<taskdef name="hibernatetool"
+			 classname="org.hibernate.tool.ant.HibernateToolTask"
+			 classpathref="pathref" classpath="${build.dir.classes}"/>
+	<taskdef name="schemaupdate"
+			 classname="org.hibernate.tool.hbm2ddl.SchemaUpdateTask"
+			 classpathref="pathref" classpath="${build.dir.classes}"/>
+
+
+
+	<target name="generateUpdateHibernateSql" depends="compile">
+		<schemaupdate
+				properties="${build.dir.classes}/teste/domain/jdbc.properties"
+				quiet="no"
+				text="no">
+			<fileset dir="src/java">
+				<include name="**/*.hbm.xml"/>
+			</fileset>
+		</schemaupdate>
+	</target>
+
+	<target name="generateHibernateDomainObjects">
+		<mkdir dir="src/gen"/>
+		<replace dir="src/java" value="">
+			<include name="**/*.hbm.xml"/>
+			<replacefilter token='&lt;timestamp source="db"' value="&lt;timestamp"/>
+		</replace>
+		<hibernatetool>
+			<configuration>
+				<fileset dir="src/java">
+					<include name="**/*.hbm.xml"/>
+				</fileset>
+			</configuration>
+			<hbm2java
+					jdk5="true"
+					ejb3="false"
+					destdir="src/gen"/>
+		</hibernatetool>
+		<delete>
+			<fileset dir="src/gen">
+				<include name="**/*Impl.java"/>
+			</fileset>
+		</delete>
+		<replace dir="src/java" value="">
+			<include name="**/*.hbm.xml"/>
+			<replacefilter token='&lt;timestamp' value='&lt;timestamp source="db"'/>
+		</replace>
+	</target>
+
+
+	<target name="initDirs">
+		<mkdir dir="build"/>
+		<mkdir dir="build/ant"/>
+		<mkdir dir="build/ant/classes"/>
+		<mkdir dir="build/ant/war"/>
+		<mkdir dir="build/ant/war/WEB-INF"/>
+		<mkdir dir="build/ant/war/WEB-INF/classes"/>
+		<mkdir dir="build/ant/war/WEB-INF/lib"/>
+	</target>
+
+
+	<target name="deploy" depends="build.war">
+		<copy todir="${TOMCAT_HOME}/webapps/">
+			<fileset dir="build/ant/">
+				<include name="war/**/*.*"/>
+			</fileset>
+		</copy>
+		<touch file="${TOMCAT_HOME}/webapps/war/WEB-INF/web.xml"/>
+	</target>
+
+	<target name="build.war" depends="compile">
+		<copy todir="build/ant/war/WEB-INF" file="conf/web.xml"/>
+		<copy todir="build/ant/war">
+			<fileset dir="src/web">
+				<include name="**/*.*"/>
+			</fileset>
+		</copy>
+
+		<copy todir="build/ant/war/WEB-INF/classes">
+			<fileset dir="build/ant/classes">
+				<include name="**/*.*"/>
+			</fileset>
+		</copy>
+
+		<copy todir="build/ant/war/WEB-INF/lib">
+			<fileset dir="lib/hibernate">
+				<include name="*.jar"/>
+			</fileset>
+			<fileset dir="lib/mysql">
+				<include name="*.jar"/>
+			</fileset>
+			<fileset dir="lib/log4j">
+				<include name="*.jar"/>
+			</fileset>
+			<fileset dir="lib/commons">
+				<include name="*.jar"/>
+			</fileset>
+			<fileset dir="lib/aspectj">
+				<include name="*.jar"/>
+			</fileset>
+			<fileset dir="lib/json">
+				<include name="*.jar"/>
+			</fileset>
+		</copy>
+		<touch file="build/ant/war/WEB-INF/web.xml"/>
+	</target>
+
+	<target name="war" depends="build.war">
+		<war file="build/ant/war.war">
+			<fileset dir="build/ant/war">
+				<include name="**/*.*"/>
+			</fileset>
+		</war>
+	</target>
+
+	<taskdef resource="org/aspectj/tools/ant/taskdefs/aspectjTaskdefs.properties">
+		<classpath>
+			<!--<pathelement location="${aspectj}/aspectj-ant.jar"/>-->
+			<pathelement location="lib/aspectj/aspectjtools.jar"/>
+		</classpath>
+	</taskdef>
+
+
+	<target name="compile" depends="initDirs">
+		<!--<javac destdir="build/ant/classes"
+			   debug="true"
+			   encoding="UTF-8"
+			   source="1.8" target="1.8"
+			   classpathref="pathref">
+			<src path="src/java"/>
+			<src path="src/gen"/>
+		</javac>-->
+		<iajc encoding="UTF-8" source="1.8" target="1.8" destdir="build/ant/classes"
+			  classpath="lib/aspectj/aspectjrt.jar" classpathref="pathref">
+			<src path="src/java"/>
+			<src path="src/gen"/>
+		</iajc>
+		<copy file="conf/log4j.properties" todir="build/ant/classes"/>
+		<copy file="conf/hibernate.cfg.xml" todir="build/ant/classes/teste/domain"/>
+
+		<copy todir="build/ant/classes">
+			<fileset dir="src/java">
+				<include name="**/*.xml"/>
+			</fileset>
+		</copy>
+
+
+
+		<copy file="conf/jdbc.properties" todir="${build.dir.classes}/teste/domain" overwrite="true"/>
+		<copy file="conf/plugins.properties" todir="${build.dir.classes}" overwrite="true"/>
+		<replace file="${build.dir.classes}/teste/domain/jdbc.properties">
+			<replacefilter token="@database.username@" value="${database.username}"/>
+			<replacefilter token="@database.password@" value="${database.password}"/>
+			<replacefilter token="@database.connection.url@" value="${database.connection.url}"/>
+		</replace>
+		<replace file="${build.dir.classes}/teste/domain/hibernate.cfg.xml" >
+			<replacefilter token="@database.username@" value="${database.username}"/>
+			<replacefilter token="@database.password@" value="${database.password}"/>
+			<replacefilter token="@database.connection.url@" value="${database.connection.url}"/>
+			<replacefilter token="@hibernate.show.sql@" value="${hibernate.show.sql}"/>
+		</replace>
+	</target>
+
+</project>

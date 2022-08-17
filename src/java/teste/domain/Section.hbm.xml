@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping
+        PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="teste.domain.Section" table="Section" abstract="true">
+
+        <meta attribute="scope-class">
+            public abstract
+        </meta>
+
+        <id name="id" type="long">
+            <generator class="native"/>
+        </id>
+        <discriminator column="discriminator"/>
+        <property name="tittle" column="tittle" type="string"/>
+
+        <many-to-one name="page" class="teste.domain.Page" column="Page"/>
+
+        <set name="components" cascade="none">
+            <key  column="section" />
+            <one-to-many class="teste.domain.ComponentImpl"/>
+        </set>
+
+        <subclass name="teste.domain.SectionImpl" discriminator-value="SectionImpl"/>
+    </class>
+</hibernate-mapping>
