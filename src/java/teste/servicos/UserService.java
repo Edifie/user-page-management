@@ -38,6 +38,7 @@ public class UserService {
             return jsonObject;
         }else {
             HibernateUtils.getCurrentSession().save(userObj);
+            HibernateUtils.getCurrentSession().getTransaction().commit();
         }
         return new JSONObject(userObj.toJson());
     }
