@@ -68,8 +68,8 @@
                 </td>
 
                 <td>
-                    <button ng-click="saveUser(u)" onclick="location.href = 'home.do'">
-                        <span class="glyphicon glyphicon-plus"/>
+                    <button ng-click="saveUser(u); send" onclick="location.href = 'home.do'">
+                        <span class="glyphicon glyphicon-plus"></span>
                     </button>
                 </td>
 
@@ -82,6 +82,7 @@
 </div>
 
 <script>
+
     function send(serviceName, method, data, callbackOk) {
         $.ajax({
             type: "POST",
