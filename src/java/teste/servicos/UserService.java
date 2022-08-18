@@ -35,9 +35,13 @@ public class UserService {
             objP.setUsername(userObj.getUsername());
 
             JSONObject jsonObject = new JSONObject(objP.toJson());
+            logger.info("created new obj");
             return jsonObject;
         }else {
             HibernateUtils.getCurrentSession().save(userObj);
+            logger.info("Saved");
+            HibernateUtils.getCurrentSession().getTransaction().commit();
+            logger.info("Commited");
         }
         return new JSONObject(userObj.toJson());
     }

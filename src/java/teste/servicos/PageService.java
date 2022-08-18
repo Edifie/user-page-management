@@ -31,7 +31,7 @@ public class PageService {
 
         if (pimp.getId() > 0){
             PageImpl pimpP = (PageImpl) DaoFactory.createPageDao().get(pimp.getId());
-            pimpP.setTittle(pimp.getTittle());
+            pimpP.setTitle(pimp.getTitle());
             pimpP.setRoles(pimp.getRoles());
             pimpP.setUser(pimp.getUser());
 

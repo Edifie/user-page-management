@@ -16,7 +16,7 @@
             <generator class="native"/>
         </id>
         <discriminator column="discriminator"/>
-        <property name="tittle" column="tittle" type="string"/>
+        <property name="title" column="title" type="string"/>
         <property name="roles" column="roles" type="string"/>
 
         <many-to-one name="user" class="teste.domain.User" column="username"/>
