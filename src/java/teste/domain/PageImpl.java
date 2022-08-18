@@ -13,7 +13,7 @@ public class PageImpl extends Page{
     public String toString() {
         return "Page{" +
                 "id=" + id +
-                ", tittle='" + tittle + '\'' +
+                ", title='" + title + '\'' +
                 ", roles='" + roles + '\'' +
                 ", user=" + user +
                 ", sections=" + sections +
@@ -29,11 +29,11 @@ public class PageImpl extends Page{
             .useClassMetadata(true)
             .useRuntimeType(true)
             .include("id", Page.class)
-            .include("tittle", Page.class)
+            .include("title", Page.class)
             .include("roles", Page.class)
             .include("id", User.class)
             .include("id" , Section.class)
-            .include("tittle", Section.class)
+            .include("title", Section.class)
             .include("Components", Section.class)
             .include("id", Component.class)
             .include("text", Component.class)
@@ -53,7 +53,7 @@ public class PageImpl extends Page{
     public String toString() {
         return "Page{" +
                 "id=" + getId() +
-                ", tittle='" + getTittle() + '\'' +
+                ", title='" + getTitle() + '\'' +
                 '}';
     }
 }

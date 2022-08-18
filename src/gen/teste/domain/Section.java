@@ -1,5 +1,5 @@
 package teste.domain;
-// Generated Aug 17, 2022 3:17:44 AM by Hibernate Tools 3.2.0.b9
+// Generated Aug 18, 2022 5:55:11 AM by Hibernate Tools 3.2.0.b9
 
 
 import java.util.HashSet;
@@ -12,7 +12,7 @@ public abstract class Section  implements java.io.Serializable {
 
 
      private long id;
-     private String tittle;
+     private String title;
      private Page page;
      private Set<ComponentImpl> components = new HashSet<ComponentImpl>(0);
 
@@ -27,12 +27,12 @@ public abstract class Section  implements java.io.Serializable {
     public void setId(long id) {
         this.id = id;
     }
-    public String getTittle() {
-        return this.tittle;
+    public String getTitle() {
+        return this.title;
     }
     
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
+    public void setTitle(String title) {
+        this.title = title;
     }
     public Page getPage() {
         return this.page;

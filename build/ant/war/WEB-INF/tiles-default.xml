@@ -27,7 +27,7 @@
 
 
    <definition name="page.addUser" extends="base.definition">
-       <put name="tittle" value="Add User"/>
+       <put name="title" value="Add User"/>
        <put name="body" value="addUser.jsp"/>
    </definition>
 
@@ -36,6 +36,17 @@
         <put name="title" value="List User"/>
         <put name="body" value="listUser.jsp"/>
     </definition>
+
+    <definition name="page.page" extends="base.definition">
+        <put name="title" value="Page"/>
+        <put name="body" value="page.jsp"/>
+    </definition>
+
+    <definition name="page.page" extends="base.definition">
+        <put name="title" value="Check Page"/>
+        <put name="body" value="checkPage.jsp"/>
+    </definition>
+
 
 
 

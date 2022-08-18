@@ -10,7 +10,7 @@ public class SectionImpl extends Section{
     public String toString() {
         return "Section{" +
                 "id=" + id +
-                ", tittle='" + tittle + '\'' +
+                ", title='" + title + '\'' +
                 ", page=" + page +
                 ", components=" + components +
                 '}';
@@ -25,7 +25,7 @@ public class SectionImpl extends Section{
             .useClassMetadata(true)
             .useRuntimeType(true)
             .include("id", Section.class)
-            .include("tittle", Section.class)
+            .include("title", Section.class)
             .include("idPage", Section.class)
             .create();
 
@@ -42,7 +42,7 @@ public class SectionImpl extends Section{
     public String toString() {
         return "Section{" +
                 "id=" + getId() +
-                ", tittle='" + getTittle() + '\'' +
+                ", title='" + getTitle() + '\'' +
                 ", page=" + getPage().getId() +
                 '}';
     }

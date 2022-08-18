@@ -83,9 +83,9 @@
 
 
 <div class="img-page">
-    <a href="<%=request.getContextPath()%>/addPage.jsp">
+    <a href="<%=request.getContextPath()%>/page.do">
         <img src="./img/new-page.png">
-        <p>Add Page</p>
+        <p>Page</p>
     </a>
 
     <a href="<%=request.getContextPath()%>/delPage.jsp">

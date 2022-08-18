@@ -32,7 +32,7 @@ public class SectionService {
         if (obj.getId() > 0){
             SectionImpl objP = (SectionImpl) DaoFactory.createSectionDao().get(obj.getId());
             objP.setId(obj.getId());
-            objP.setTittle(obj.getTittle());
+            objP.setTitle(obj.getTitle());
             objP.setPage(obj.getPage());
 
             JSONObject jsonObject = new JSONObject(objP.toJson());
