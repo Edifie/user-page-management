@@ -39,9 +39,13 @@ public class UserService {
             return jsonObject;
         }else {
             HibernateUtils.getCurrentSession().save(userObj);
+
             logger.info("Saved");
             HibernateUtils.getCurrentSession().getTransaction().commit();
             logger.info("Commited");
+
+            HibernateUtils.getCurrentSession().getTransaction().commit();
+
         }
         return new JSONObject(userObj.toJson());
     }
