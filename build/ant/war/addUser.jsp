@@ -34,6 +34,18 @@
 
 <div id="myApp" class="container" ng-app="myApp" ng-controller="myCtrl">
     <div>
+
+
+
+
+        <form method="post" action="<%=request.getContextPath()%>/soa">
+
+
+
+
+
+
+
         <table style="width: 75%; margin-left: 1%;" class="clearfix table">
             <thead>
             <tr>
@@ -48,11 +60,11 @@
 
             <tbody ng-app="myApp" ng-controller="myCtrl" ng-repeat="u in users" class="clearfix">
             <tr>
-                <td>{{u.name}}</td>
-                <td>{{u.username}}</td>
+                <td>${u.name}</td>
+                <td>${u.username}</td>
                 <td>**********</td>
-                <td>{{u.email}}</td>
-                <td>{{u.roles}}</td>
+                <td>${u.email}</td>
+                <td>${u.roles}</td>
             </tr>
             </tbody>
 
@@ -68,20 +80,25 @@
                 </td>
 
                 <td>
-                    <button ng-click="saveUser(u); send" onclick="location.href = 'home.do'">
+                    <input type="submit">
                         <span class="glyphicon glyphicon-plus"></span>
-                    </button>
+                    </input>
                 </td>
 
             </tr>
+
+
             </tbody>
 
+
         </table>
+        </form>
     </div>
 
 </div>
 
 <script>
+
 
     function send(serviceName, method, data, callbackOk) {
         $.ajax({
@@ -109,18 +126,25 @@
         });
     }
 
+
     let app = angular.module("myApp", []);
     app.controller("myCtrl", function ($scope) {
+
+        $scope.name = "edi"
+        $scope.password= "123"
+
         $scope.users = [];
         $scope.roles = ["admin", "PageCreator", "normal"];
 
 
-        $scope.addUser = function (){
+        $scope.addUser = function () {
             let u = {
-                '@class' : '<%=UserImpl.class.getName()%>'
+                '@class': '<%=UserImpl.class.getName()%>'
             }
             $scope.users.push(u);
-        }
+
+        };
+
 
         $scope.listUsers = function () {
             send(
@@ -147,7 +171,12 @@
         }
 
         $scope.listUsers();
+
     });
+
+
+
+
 </script>
 
 </body>

@@ -65,6 +65,8 @@
 <body>
 
 <div class="img-user">
+
+
     <a href="<%=request.getContextPath()%>/addUser.do">
         <img src="./img/add-user.png">
         <p>Add User</p>

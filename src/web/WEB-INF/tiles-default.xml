@@ -42,7 +42,7 @@
         <put name="body" value="page.jsp"/>
     </definition>
 
-    <definition name="page.page" extends="base.definition">
+    <definition name="page.checkPage" extends="base.definition">
         <put name="title" value="Check Page"/>
         <put name="body" value="checkPage.jsp"/>
     </definition>

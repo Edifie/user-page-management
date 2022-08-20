@@ -35,6 +35,8 @@ public class HibernateUtils implements Runnable{
         config.configure(Thread.currentThread().getContextClassLoader().getResource("teste/domain/hibernate.cfg.xml"));
         sessionFactory = config.buildSessionFactory();
 
+        logger.info("created factory");
+
     }
 
 
