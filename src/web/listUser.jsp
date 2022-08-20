@@ -36,11 +36,11 @@
 
             <tbody ng-app="myApp" ng-controller="myCtrl" ng-repeat="u in users" class="clearfix">
             <tr style="color: black;">
-                <td>{{u.name}}</td>
-                <td>{{u.username}}</td>
+                <td>${u.name}</td>
+                <td>${u.username}</td>
                 <td>**********</td>
-                <td>{{u.email}}</td>
-                <td>{{u.roles}}</td>
+                <td>${u.email}</td>
+                <td>${u.roles}</td>
             </tr>
             </tbody>
         </table>

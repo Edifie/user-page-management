@@ -10,23 +10,30 @@ import teste.servicepack.security.logic.HasRole;
 import teste.servicepack.security.logic.IsAuthenticated;
 import teste.servicepack.security.logic.Transaction;
 import teste.utils.HibernateUtils;
+import org.hibernate.classic.Session;
+//import org.hibernate.Transaction;
+
 
 import java.util.List;
 
 public class UserService {
     private static final Logger logger = Logger.getLogger(UserService.class);
 
-
     @Transaction
     @IsAuthenticated
     @HasRole(role = "admin")
 
 
-    public JSONObject addUser (JSONObject user){
+    public JSONObject addUser(JSONObject user) {
+        logger.info("add user triggered");
+
+       //Session session = HibernateUtils.getCurrentSession();
+
+       // org.hibernate.Transaction transaction = session.beginTransaction();
 
         UserImpl userObj = UserImpl.fromJson(user);
 
-        if (userObj.getId() > 0){
+        if (userObj.getId() > 0) {
             UserImpl objP = (UserImpl) DaoFactory.createUserDao().get(userObj.getId());
             objP.setName(userObj.getName());
             objP.setRoles(userObj.getRoles());
@@ -37,7 +44,7 @@ public class UserService {
             JSONObject jsonObject = new JSONObject(objP.toJson());
             logger.info("created new obj");
             return jsonObject;
-        }else {
+        } else {
             HibernateUtils.getCurrentSession().save(userObj);
 
             logger.info("Saved");
@@ -53,8 +60,8 @@ public class UserService {
 
     @Transaction
     @IsAuthenticated
-    @HasRole (role = "admin")
-    public JSONObject loadUser (JSONObject idObj){
+    @HasRole(role = "admin")
+    public JSONObject loadUser(JSONObject idObj) {
 
         Long id = idObj.getLong("id");
         UserImpl userP = (UserImpl) DaoFactory.createUserDao().get(id);
@@ -81,11 +88,10 @@ public class UserService {
     }
 
 
-
     @Transaction
     @IsAuthenticated
     @HasRole(role = "admin")
-    public void deleteUser(JSONObject user){
+    public void deleteUser(JSONObject user) {
 
         User user1 = (User) HibernateUtils.getCurrentSession().load(User.class, user.getLong("id"));
         logger.info("DELETE USER: " + user1.getId());

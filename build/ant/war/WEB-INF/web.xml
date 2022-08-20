@@ -21,6 +21,7 @@
     </filter-mapping>
 
 
+
     <filter>
         <filter-name>SecurityFilter</filter-name>
         <filter-class>teste.web.SecurityFilter</filter-class>
@@ -29,6 +30,7 @@
         <filter-name>SecurityFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
 
 
     <servlet>

@@ -24,7 +24,7 @@
 
     <action-mappings>
         <!--Portal Forward-->
-        <action path="/home" forward="page.home"/>
+        <action path="/home" forward="page.home"/>ƒ
         <action path="/login" forward="page.login"/>
         <action path="/addUser" forward="page.addUser"/>
         <action path="/listUser" forward="page.listUser"/>
