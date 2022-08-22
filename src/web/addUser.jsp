@@ -61,7 +61,7 @@
                 <td><input style="color:black" type="text" ng-model="u.password"></td>
                 <td><input style="color:black" type="text" ng-model="u.email"></td>
                 <td>
-                    <select style="color:black" ng-model="u.roles" ng-options="u for users in roles">
+                    <select style="color:black" ng-model="u.roles" ng-options="u for u in roles">
                     </select>
                 </td>
                 <td>
