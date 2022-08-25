@@ -34,7 +34,19 @@
 
 <div id="myApp" class="container" ng-app="myApp" ng-controller="myCtrl">
     <div>
-        <table style="width: 75%;margin-left: 1%;" class="clearfix table">
+
+
+
+
+        <form method="post" action="<%=request.getContextPath()%>/soa">
+
+
+
+
+
+
+
+        <table style="width: 75%; margin-left: 1%;" class="clearfix table">
             <thead>
             <tr>
                 <th>Name</th>
@@ -45,37 +57,46 @@
                 <th>Add</th>
             </tr>
             </thead>
+
             <tbody ng-app="myApp" ng-controller="myCtrl" ng-repeat="u in users" class="clearfix">
             <tr>
-                <td>{{u.name}}</td>
-                <td>{{u.username}}</td>
-                <td>{{u.password}}</td>
-                <td>{{u.email}}</td>
-                <td>{{u.roles}}</td>
+                <td>${u.name}</td>
+                <td>${u.username}</td>
+                <td>**********</td>
+                <td>${u.email}</td>
+                <td>${u.roles}</td>
             </tr>
             </tbody>
+
             <tbody>
             <tr>
-                <td><input style="color:black" type="text" ng-model="u.name"></td>
-                <td><input style="color:black" type="text" ng-model="u.username"></td>
-                <td><input style="color:black" type="text" ng-model="u.password"></td>
-                <td><input style="color:black" type="text" ng-model="u.email"></td>
+                <td><input type="text" ng-model="u.name"></td>
+                <td><input type="text" ng-model="u.username"></td>
+                <td><input type="text" ng-model="u.password"></td>
+                <td><input type="text" ng-model="u.email"></td>
+
                 <td>
-                    <select style="color:black" ng-model="u.roles" ng-options="u for users in roles">
-                    </select>
+                    <select ng-model="u.roles" ng-options="u for u in roles"></select>
                 </td>
+
                 <td>
-                    <button ng-click="saveUser(u)" onclick="location.href='home.jsp'">
-                        <span style="color:darkgreen;" class="glyphicon glyphicon-plus"/>
-                    </button>
+                    <input type="submit">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </input>
                 </td>
 
             </tr>
-            </tbody>
-        </table>
 
+
+            </tbody>
+
+
+        </table>
+        </form>
     </div>
+
 </div>
+
 <script>
 
 
