@@ -13,6 +13,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Objects;
 
 public class ServerRegisterSession implements RegisterSession {
     @Override
@@ -43,8 +44,10 @@ public class ServerRegisterSession implements RegisterSession {
             HibernateUtils.getCurrentSession().save(session);
         }
 
+if (Objects.nonNull(u)){
+    session.setUser(u);
+}
 
-        session.setUser(u);
 
         HibernateUtils.getCurrentSession().getTransaction().commit();
 

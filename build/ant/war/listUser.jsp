@@ -83,7 +83,7 @@
 
         $scope.listUsers = function (){
             send(
-                "user.UserService",
+                "UserService",
                 "loadAll",
                 {},
                 function (result){

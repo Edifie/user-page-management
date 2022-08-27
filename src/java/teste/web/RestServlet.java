@@ -63,7 +63,7 @@ public class RestServlet extends AbstractServlet
 
         }
         else
-            encaminha("/errors/erro404.jsp");
+            encaminha("/home.jsp");
     }
 
 

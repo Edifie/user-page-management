@@ -11,9 +11,10 @@
         <property name="hibernate.connection.autoReconnectForPools">true</property>
         <property name="hibernate.connection.autocommit">false</property>
 
-        <property name="hibernate.connection.url">jdbc:mysql://:3306/hibernate</property>
+        <property name="hibernate.connection.url">@database.connection.url@</property>
+        <property name="hibernate.connection.username">@database.username@</property>
+        <property name="hibernate.connection.password">@database.password@</property>
         <property name="show_sql">@hibernate.show.sql@</property>
-
 
 
         <property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>

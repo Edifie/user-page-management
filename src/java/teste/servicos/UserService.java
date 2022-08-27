@@ -22,8 +22,6 @@ public class UserService {
     @Transaction
     @IsAuthenticated
     @HasRole(role = "admin")
-
-
     public JSONObject addUser(JSONObject user) {
         logger.info("add user triggered");
 
@@ -45,13 +43,10 @@ public class UserService {
             logger.info("created new obj");
             return jsonObject;
         } else {
+            HibernateUtils.getSessionFactory().getCurrentSession().beginTransaction();
             HibernateUtils.getCurrentSession().save(userObj);
-
+            HibernateUtils.getCurrentSession().getTransaction().commit();
             logger.info("Saved");
-            HibernateUtils.getCurrentSession().getTransaction().commit();
-            logger.info("Commited");
-
-            HibernateUtils.getCurrentSession().getTransaction().commit();
 
         }
         return new JSONObject(userObj.toJson());
@@ -73,7 +68,7 @@ public class UserService {
 
     @Transaction
     @IsAuthenticated
-    public JSONArray LoadAll(JSONObject alo) {
+    public JSONArray loadAll(JSONObject alo) {
 
         logger.info("User Service");
 

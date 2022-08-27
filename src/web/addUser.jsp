@@ -36,16 +36,6 @@
     <div>
 
 
-
-
-        <form method="post" action="<%=request.getContextPath()%>/soa">
-
-
-
-
-
-
-
         <table style="width: 75%; margin-left: 1%;" class="clearfix table">
             <thead>
             <tr>
@@ -70,21 +60,22 @@
 
             <tbody>
             <tr>
-                <td><input type="text" ng-model="u.name"></td>
-                <td><input type="text" ng-model="u.username"></td>
-                <td><input type="text" ng-model="u.password"></td>
-                <td><input type="text" ng-model="u.email"></td>
+                <form method="post" action="<%=request.getContextPath()%>/soa">
+                    <td><input type="text" id="name" onchange="changeName()"></td>
+                    <td><input type="text" id="username" onchange="changeUsername()"></td>
+                    <td><input type="text" id="password" onchange="changePassword()"></td>
+                    <td><input type="text" id="email" onchange="changeEmail()"></td>
 
-                <td>
-                    <select ng-model="u.roles" ng-options="u for u in roles"></select>
-                </td>
+                    <td>
+                        <select ng-model="u.roles" ng-options="u for u in roles" id="role" onchange="selectRole()"> </select>
+                    </td>
 
-                <td>
-                    <input type="submit">
+                    <td>
+                        <input type="submit" onclick="saveUser()">
                         <span class="glyphicon glyphicon-plus"></span>
-                    </input>
-                </td>
-
+                        </input>
+                    </td>
+                </form>
             </tr>
 
 
@@ -92,12 +83,18 @@
 
 
         </table>
-        </form>
     </div>
 
 </div>
 
 <script>
+    const userData = {
+        name: null,
+        username: null,
+        password: null,
+        email: null,
+        roles: null
+    }
 
 
     function send(serviceName, method, data, callbackOk) {
@@ -127,11 +124,50 @@
     }
 
 
+    function changeName() {
+        userData.name = document.getElementById("name").value;
+
+    }
+
+    function changeUsername() {
+        userData.username = document.getElementById("username").value;
+
+    }
+
+    function changePassword() {
+        userData.password = document.getElementById("password").value;
+
+    }
+
+    function changeEmail() {
+        userData.email = document.getElementById("email").value;
+
+    }
+
+    function selectRole() {
+        const e = document.getElementById("role");
+        const value = e.value;
+        console.log(value)
+
+        const selectedRole = e.options[e.selectedIndex].text;
+        console.log(selectedRole)
+        userData.roles = selectedRole;
+
+    }
+
+    function saveUser() {
+        send(
+            "UserService",
+            "addUser",
+            userData,
+            function (result) {
+            },
+        );
+    }
+
     let app = angular.module("myApp", []);
     app.controller("myCtrl", function ($scope) {
 
-        $scope.name = "edi"
-        $scope.password= "123"
 
         $scope.users = [];
         $scope.roles = ["admin", "PageCreator", "normal"];
@@ -148,9 +184,13 @@
 
         $scope.listUsers = function () {
             send(
-                "user.UserService",
-                "loadAll",
-                {},
+                "UserService",
+                "addUser",
+                {
+                    "name": "name",
+                    "username": "surname",
+                    "password": "12345",
+                },
                 function (result) {
                     $scope.users = result;
                     $scope.$apply();
@@ -158,26 +198,21 @@
             );
         };
 
-        $scope.saveUser = function (u) {
+        $scope.saveUser = function () {
             send(
-                "user.UserService",
+                "UserService",
                 "addUser",
-                u,
+                userData,
                 function (result) {
-                    angular.merge(u, result);
-                    $scope.$apply();
                 },
             );
         }
 
-        $scope.listUsers();
-
     });
 
 
-
-
 </script>
+
 
 </body>
 
