@@ -15,11 +15,12 @@
         <id name="id" type="long">
             <generator class="native"/>
         </id>
+
         <discriminator column="discriminator"/>
         <property name="title" column="title" type="string"/>
         <property name="roles" column="roles" type="string"/>
 
-        <many-to-one name="user" class="teste.domain.User" column="username"/>
+        <many-to-one name="user" class="teste.domain.User" column="user"/>
 
         <set name="sections" cascade="none">
             <key column="page"/>

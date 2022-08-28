@@ -105,7 +105,7 @@
     </error-page>
     <!--START FILES-->
     <welcome-file-list>
-        <welcome-file>login.do</welcome-file>
+        <welcome-file>home.do</welcome-file>
     </welcome-file-list>
 
 

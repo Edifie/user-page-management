@@ -18,6 +18,7 @@
     a {
         font-family: "Monaco", monospace;
         text-align: center;
+        text-decoration: none;
     }
 
     a:link {

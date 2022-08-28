@@ -1,7 +1,7 @@
 <%@ page import="teste.domain.PageImpl" %>
+<%@ page import="teste.domain.Page" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js%22%3E"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!DOCTYPE html>
@@ -41,28 +41,53 @@
         <thead>
         <tr>
             <th>Title</th>
+            <th>User ID</th>
             <th>Roles</th>
-            <th>ID</th>
-            <th>Add Page</th>
         </tr>
         </thead>
 
         <tbody ng-app="myApp" ng-controller="myCtrl" ng-repeat="p in pages" class="clearfix">
         <tr>
-            <td>{{p.title}}</td>
-            <td>{{p.roles}}</td>
-            <td>{{p.id}}</td>
-            <td> - </td>
-            <a   class="button" href="<%=request.getContextPath()%>/checkPage.do?id=${p.id}">
+            <td>${p.title}</td>
+            <td>${p.userID}</td>
+            <td>${p.roles}</td>
+
+            <a class="button" href="<%=request.getContextPath()%>/checkPage.do?id=${id}">
                Pages <span style="color:seagreen" class="glyphicon-ok"></span>
             </a> </td>
         </tr>
         </tbody>
+
+        <tbody>
+        <tr>
+            <form method="post" action="<%=request.getContextPath()%>/soa">
+                <td><input type="text" id="title" onchange="changeTitle()"></td>
+                <td><input type="text" id="userID" onchange="changeUserID()"></td>
+
+                <td>
+                    <select ng-model="p.roles" ng-options="p for p in roles" id="roles" onchange="selectRole()"> </select>
+                </td>
+
+                <td>
+                    <input type="submit" onclick="savePage()">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    </input>
+                </td>
+            </form>
+        </tr>
+        </tbody>
+
     </table>
 </div>
 
 
 <script>
+
+    const pageData = {
+        title: null,
+        roles: null,
+        userID: null
+    }
 
 
     function send(serviceName, method, data, callbackOk) {
@@ -92,24 +117,65 @@
     }
 
 
+    function changeTitle() {
+        pageData.title = document.getElementById("title").value;
+    }
+
+    function changeUserID() {
+        pageData.userID = document.getElementById("userID").value;
+    }
+
+    function selectRole() {
+        const e = document.getElementById("roles");
+        const value = e.value;
+        console.log(value)
+
+        const selectedRole = e.options[e.selectedIndex].text;
+        console.log(selectedRole)
+        pageData.roles = selectedRole;
+
+    }
+
+    function savePage(){
+        send (
+            "PageService",
+            "addPage",
+            pageData,
+            function (result){
+            },
+        );
+    }
+
+
 
     let app = angular.module("myApp", []);
     app.controller("myCtrl", function ($scope){
 
         $scope.pages = [];
+        $scope.roles = ["admin", "PageCreator", "normal"];
 
-        $scope.listPages = function (){
-            send (
+        $scope.listPage = function () {
+            send(
                 "PageService",
                 "loadAll",
-                {},
-                function (result){
+                {
+                },
+                function (result) {
                     $scope.pages = result;
                     $scope.$apply();
+                },
+            );
+        };
+
+        $scope.savePage = function (){
+            send (
+                "PageService",
+                "addPage",
+                pageData,
+                function (result){
                 }
             );
         };
-        $scope.listPages();
     });
 
 

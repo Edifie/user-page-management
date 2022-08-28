@@ -25,13 +25,13 @@
 
 <div id="myApp" ng-app="myApp" ng-controller="myCtrl" ng-repeat="p in pages">
 
-    <h2 id="titlePage"> {{p.title}} </h2>
+    <h2 id="titlePage"> ${p.title} </h2>
     <hr id="HR">
     <div class="panel panel-default">
         <div class="panel-heading" ng-repeat="s in p.sections">
-            <h3>{{s.title}}</h3>
+            <h3>${s.title}</h3>
             <div class="panel-body" ng-repeat="c in s.components">
-                <h4>{{c.text}}</h4>
+                <h4>${c.text}</h4>
                 <img src="./img/{{c.img}}"/>
                 <hr>
             </div>
@@ -71,7 +71,7 @@
     let app = angular.module("myApp", []);
     app.controller("myCtrl", function ($scope){
 
-        $scope.id = <%=id%>;
+        $scope.id = id;
         $scope.pages = {
             sections: [
                 { components: []}
@@ -102,7 +102,7 @@
                 }
             );
         };
-        $scope.listPages();
+        $scope.loadPage();
         $scope.loadComponents();
     });
 

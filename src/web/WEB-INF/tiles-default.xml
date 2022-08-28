@@ -21,7 +21,7 @@
     </definition>
 
     <definition name="page.login" extends="base.definition">
-        <put name="title" value="Autenticação"/>
+        <put name="title" value="Authentication"/>
         <put name="body" value="login.jsp"/>
     </definition>
 
