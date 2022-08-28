@@ -24,23 +24,22 @@
     <div>
         <table style="width: 75%; margin-left: 1%;" class="clearfix table">
             <thead>
-            <tr style="color: black">
+            <tr style="color: black; text-align: center; border-spacing: 10px;">
                 <th>Name</th>
                 <th>Username</th>
                 <th>Password</th>
                 <th>Email</th>
                 <th>Roles</th>
-                <th>Add</th>
             </tr>
             </thead>
 
             <tbody ng-app="myApp" ng-controller="myCtrl" ng-repeat="u in users" class="clearfix">
-            <tr style="color: black;">
-                <td>${u.name}</td>
-                <td>${u.username}</td>
-                <td>**********</td>
-                <td>${u.email}</td>
-                <td>${u.roles}</td>
+            <tr style="color: black; text-align: center; border-spacing: 10px;">
+                <td>{{u.username}}</td>
+                <td>{{u.name}}</td>
+                <td>********</td>
+                <td>{{u.email}}</td>
+                <td>{{u.roles}}</td>
             </tr>
             </tbody>
         </table>

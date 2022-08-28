@@ -72,7 +72,7 @@
         <p>Add User</p>
     </a>
 
-    <a href="<%=request.getContextPath()%>/delUser.jsp">
+    <a href="<%=request.getContextPath()%>/delUser.do">
         <img src="./img/remove-user.png">
         <p>Remove User</p>
     </a>
@@ -90,12 +90,12 @@
         <p>Page</p>
     </a>
 
-    <a href="<%=request.getContextPath()%>/delPage.jsp">
+    <a href="<%=request.getContextPath()%>/delPage.do">
         <img src="./img/delete-page.png">
         <p>Remove Page</p>
     </a>
 
-    <a href="<%=request.getContextPath()%>/listPage.jsp">
+    <a href="<%=request.getContextPath()%>/listPage.do">
         <img src="./img/show-page.png">
         <p>List Pages</p>
     </a>

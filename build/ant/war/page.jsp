@@ -37,26 +37,24 @@
 <div id="myApp" class="container" ng-app="myApp" ng-controller="myCtrl">
 
     ${pages}
-    <table class="table clearfix">
+    <table class="table clearfix" style="text-align: center; border-spacing: 10px; padding-top: 20px;">
         <thead>
         <tr>
             <th>Title</th>
             <th>Roles</th>
             <th>ID</th>
             <th>Add Page</th>
-            <th>Roles</th>
-            <th>Pages</th>
         </tr>
         </thead>
 
         <tbody ng-app="myApp" ng-controller="myCtrl" ng-repeat="p in pages" class="clearfix">
         <tr>
-            <td>${p.title}</td>
-            <td>${p.roles}</td>
-            <td>${p.id}</td>
+            <td>{{p.title}}</td>
+            <td>{{p.roles}}</td>
+            <td>{{p.id}}</td>
             <td> - </td>
             <a   class="button" href="<%=request.getContextPath()%>/checkPage.do?id=${p.id}">
-               asdad <span style="color:seagreen" class="glyphicon-ok"></span>
+               Pages <span style="color:seagreen" class="glyphicon-ok"></span>
             </a> </td>
         </tr>
         </tbody>
@@ -65,6 +63,8 @@
 
 
 <script>
+
+
     function send(serviceName, method, data, callbackOk) {
         $.ajax({
             type: "POST",
@@ -90,6 +90,7 @@
             }
         });
     }
+
 
 
     let app = angular.module("myApp", []);

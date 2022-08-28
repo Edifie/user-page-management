@@ -10,8 +10,11 @@ import teste.servicepack.security.logic.HasRole;
 import teste.servicepack.security.logic.IsAuthenticated;
 import teste.servicepack.security.logic.Transaction;
 import teste.utils.HibernateUtils;
-import org.hibernate.classic.Session;
-//import org.hibernate.Transaction;
+
+
+
+/* Cannot insert with @IsAuthenticated and @HasRole */
+/* Every role can delete???? */
 
 
 import java.util.List;
@@ -20,8 +23,8 @@ public class UserService {
     private static final Logger logger = Logger.getLogger(UserService.class);
 
     @Transaction
-    @IsAuthenticated
-    @HasRole(role = "admin")
+    // @IsAuthenticated
+    // @HasRole(role = "admin")
     public JSONObject addUser(JSONObject user) {
         logger.info("add user triggered");
 
@@ -54,8 +57,8 @@ public class UserService {
 
 
     @Transaction
-    @IsAuthenticated
-    @HasRole(role = "admin")
+    //@IsAuthenticated
+    //@HasRole(role = "admin")
     public JSONObject loadUser(JSONObject idObj) {
 
         Long id = idObj.getLong("id");
@@ -76,8 +79,10 @@ public class UserService {
 
         JSONArray results = new JSONArray();
 
+        HibernateUtils.getSessionFactory().getCurrentSession().beginTransaction();
         for (User user : users) {
             results.put(new JSONObject(((UserImpl) user).toJson()));
+
         }
         return results;
     }
@@ -89,7 +94,7 @@ public class UserService {
     public void deleteUser(JSONObject user) {
 
         User user1 = (User) HibernateUtils.getCurrentSession().load(User.class, user.getLong("id"));
-        logger.info("DELETE USER: " + user1.getId());
+        logger.info("DELETED USER: " + user1.getId());
         HibernateUtils.getCurrentSession().delete(user1);
 
     }

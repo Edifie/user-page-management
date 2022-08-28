@@ -47,6 +47,11 @@
         <put name="body" value="checkPage.jsp"/>
     </definition>
 
+    <definition name="page.delUser" extends="base.definition">
+        <put name="title" value="Delete User"/>
+        <put name="body" value="delUser.jsp"/>
+    </definition>
+
 
 
 

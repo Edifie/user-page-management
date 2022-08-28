@@ -39,9 +39,12 @@ public class PageService {
 
             return jsonObject;
         }else {
+            HibernateUtils.getSessionFactory().getCurrentSession().beginTransaction();
             pimp.setUser(session.getUser());
             HibernateUtils.getCurrentSession().save(pimp);
+            HibernateUtils.getCurrentSession().getTransaction().commit();
             return new JSONObject(pimp.toJson());
+
         }
     }
 

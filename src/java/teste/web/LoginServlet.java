@@ -26,6 +26,8 @@ public class LoginServlet extends AbstractServlet
         logger.info("Username: " + username);
         logger.debug("Password" + password);
 
+
+
         User user = null;
         try {
             user = loginService.checkLogin(username,password);
@@ -60,7 +62,7 @@ public class LoginServlet extends AbstractServlet
                 resp.sendRedirect(encodedURL);
             }
         }else {
-            String encodedURL = resp.encodeRedirectUrl("http://localhost:8080/TrabalhoES/login.do?wrong_password");
+            String encodedURL = resp.encodeRedirectUrl("http://localhost:8080/war/login.do?wrong_password");
             resp.sendRedirect(encodedURL);
         }
     }

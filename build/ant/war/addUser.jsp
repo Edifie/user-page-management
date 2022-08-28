@@ -67,7 +67,7 @@
                     <td><input type="text" id="email" onchange="changeEmail()"></td>
 
                     <td>
-                        <select ng-model="u.roles" ng-options="u for u in roles" id="role" onchange="selectRole()"> </select>
+                        <select ng-model="u.roles" ng-options="u for u in roles" id="roles" onchange="selectRole()"> </select>
                     </td>
 
                     <td>
@@ -145,7 +145,7 @@
     }
 
     function selectRole() {
-        const e = document.getElementById("role");
+        const e = document.getElementById("roles");
         const value = e.value;
         console.log(value)
 
@@ -173,19 +173,10 @@
         $scope.roles = ["admin", "PageCreator", "normal"];
 
 
-        $scope.addUser = function () {
-            let u = {
-                '@class': '<%=UserImpl.class.getName()%>'
-            }
-            $scope.users.push(u);
-
-        };
-
-
         $scope.listUsers = function () {
             send(
                 "UserService",
-                "addUser",
+                "loadAll",
                 {
                     "name": "name",
                     "username": "surname",
