@@ -31,6 +31,7 @@
         <action path="/page" forward="page.page"/>
         <action path="/checkPage" forward="page.checkPage"/>
         <action path="/delUser" forward="page.delUser"/>
+        <action path="/listPage" forward="page.listPages"/>
     </action-mappings>
     <!--20 Megabytes upload max size can go until 700 MB nao se sabe porque
         pontos possiveis de ajuste Fazer um UPLOAD Servlet

@@ -52,6 +52,11 @@
         <put name="body" value="delUser.jsp"/>
     </definition>
 
+    <definition name="page.listPages" extends="base.definition">
+        <put name="title" value="List Pages"/>
+        <put name="body" value="listPages.jsp"/>
+    </definition>
+
 
 
 

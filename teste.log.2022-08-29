@@ -1,0 +1,1 @@
+2022-08-30 00:22:57,458 (DriverManagerConnectionProvider.java:147) 1947235 INFO  [Finalizer] connection.DriverManagerConnectionProvider - cleaning up connection pool: jdbc:mysql://localhost:3306/Hibernate_TB?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true

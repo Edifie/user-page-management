@@ -21,8 +21,8 @@ public class ComponentService {
 
 
     //addComponent
-    @IsAuthenticated
-    @HasRole(role = "Admin")
+    //@IsAuthenticated
+    //@HasRole(role = "Admin")
     @Transaction
     public JSONObject addComponent(JSONObject Component){
         logger.info("Component");
@@ -69,8 +69,8 @@ public class ComponentService {
     }
 
 
-    @IsAuthenticated
-    @HasRole(role = "admin")
+    //@IsAuthenticated
+   // @HasRole(role = "admin")
     @Transaction
     public void deleteComp(JSONObject component){
         Component comp = (Component)HibernateUtils.getCurrentSession().load(Component.class, component.getLong("id"));

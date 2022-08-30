@@ -52,7 +52,7 @@
             <td>${p.userID}</td>
             <td>${p.roles}</td>
 
-            <a class="button" href="<%=request.getContextPath()%>/checkPage.do?id=${id}">
+            <a class="button" href="<%=request.getContextPath()%>/checkPage.do"> <!-- ?id=${id} -->
                Pages <span style="color:seagreen" class="glyphicon-ok"></span>
             </a> </td>
         </tr>

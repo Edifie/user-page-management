@@ -52,7 +52,7 @@ public class PageImpl extends Page{
     @Override
     public String toString() {
         return "Page{" +
-                "id=" + getId() +
+                "idPage=" + getId() +
                 ", title='" + getTitle() + '\'' +
                 '}';
     }

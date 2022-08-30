@@ -70,7 +70,7 @@ public class UserService {
 
 
     @Transaction
-    @IsAuthenticated
+    //@IsAuthenticated
     public JSONArray loadAll(JSONObject alo) {
 
         logger.info("User Service");
@@ -89,8 +89,8 @@ public class UserService {
 
 
     @Transaction
-    @IsAuthenticated
-    @HasRole(role = "admin")
+    //@IsAuthenticated
+    //@HasRole(role = "admin")
     public void deleteUser(JSONObject user) {
 
         User user1 = (User) HibernateUtils.getCurrentSession().load(User.class, user.getLong("id"));

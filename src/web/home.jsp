@@ -96,7 +96,7 @@
         <p>Remove Page</p>
     </a>
 
-    <a href="<%=request.getContextPath()%>/listPage.do">
+    <a href="<%=request.getContextPath()%>/listPages.do">
         <img src="./img/show-page.png">
         <p>List Pages</p>
     </a>

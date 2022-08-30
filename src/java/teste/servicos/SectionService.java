@@ -19,11 +19,12 @@ public class SectionService {
 
 
 
-    @IsAuthenticated
+    //@IsAuthenticated
     @Transaction
-    @HasRole(role = "admin")
+    //@HasRole(role = "admin")
     public JSONObject addSection(JSONObject section){
         logger.info("Section to add");
+
 
         long idPage = section.getLong("idPage");
         Page page = DaoFactory.createPageDao().load(idPage);
@@ -39,8 +40,11 @@ public class SectionService {
 
             return jsonObject;
         }else {
+            HibernateUtils.getSessionFactory().getCurrentSession().beginTransaction();
             page.getSections().add(obj);
             HibernateUtils.getCurrentSession().save(obj);
+            HibernateUtils.getCurrentSession().getTransaction().commit();
+
         }
 
         return new JSONObject(obj.toJson());
@@ -49,7 +53,7 @@ public class SectionService {
 
 
 
-    @IsAuthenticated
+    //@IsAuthenticated
     @Transaction
     public JSONArray returnAll (JSONObject alo) throws JSONException{
 
@@ -67,9 +71,9 @@ public class SectionService {
 
 
 
-    @IsAuthenticated
+    //@IsAuthenticated
     @Transaction
-    @HasRole(role = "admin")
+    //@HasRole(role = "admin")
     public void deleteSection (JSONObject section){
         Section section1 = (Section) HibernateUtils.getCurrentSession().load(Section.class, section.getLong("idSection"));
         HibernateUtils.getCurrentSession().delete(section1);
