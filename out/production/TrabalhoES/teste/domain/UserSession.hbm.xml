@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping
+        PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="teste.domain.UserSession" table="UserSession">
+        <meta attribute="scope-class">
+            public abstract
+        </meta>
+
+        <id name="cookie" type="string">
+            <generator class="assigned" />
+        </id>
+
+        <discriminator column="discriminator"/>
+        <many-to-one name="user" class="teste.domain.User" column="User" outer-join="true" cascade="none"/>
+
+        <subclass name="teste.domain.UserSessionImpl" discriminator-value="UserSessionImpl"/>
+    </class>
+</hibernate-mapping>
