@@ -57,6 +57,10 @@
         <put name="body" value="listPages.jsp"/>
     </definition>
 
+    <definition name="page.editPage" extends="base.definition">
+        <put name="title" value="Edit Pages"/>
+        <put name="body" value="editPage.jsp"/>
+    </definition>
 
 
 

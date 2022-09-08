@@ -31,6 +31,7 @@ public class PageImpl extends Page{
             .include("id", Page.class)
             .include("title", Page.class)
             .include("roles", Page.class)
+            .include("sections", Page.class)
             .include("id", User.class)
             .include("id" , Section.class)
             .include("title", Section.class)
@@ -51,9 +52,9 @@ public class PageImpl extends Page{
 
     @Override
     public String toString() {
-        return "Page{" +
-                "idPage=" + getId() +
-                ", title='" + getTitle() + '\'' +
+        return "{" +
+                "idPage:" + getId() + "," +
+                " title:'" + getTitle() +
                 '}';
     }
 }

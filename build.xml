@@ -187,7 +187,7 @@
 		<replace file="${build.dir.classes}/teste/domain/jdbc.properties">
 			<replacefilter token="@database.username@" value="${database.username}"/>
 			<replacefilter token="@database.password@" value="${database.password}"/>
-			<replacefilter token="@database.connection.url@" value="${database.connection.url}"/>
+			<replacefilter token="@database.connection.url@" value="${database.connection.url.jdbc}"/>
 		</replace>
 		<replace file="${build.dir.classes}/teste/domain/hibernate.cfg.xml" >
 			<replacefilter token="@database.username@" value="${database.username}"/>

@@ -53,19 +53,19 @@ public class PageService {
         return new JSONObject(pageObj.toJson());
     }
 
-    @IsAuthenticated
+    //@IsAuthenticated
     @Transaction
     public JSONObject loadPage (JSONObject page){
         logger.info("Requesting page");
 
-        Long pageObjID = page.getLong("id");
+        Long pageObjID = page.getLong("idPage");
         PageImpl pageObjP = (PageImpl) DaoFactory.createPageDao().get(pageObjID);
 
         JSONObject jsonObject = new JSONObject(pageObjP.toJson());
         return jsonObject;
     }
 
-    @IsAuthenticated
+   // @IsAuthenticated
     @Transaction
     public JSONArray loadAll (JSONObject alo){
         List<Page> pages = DaoFactory.createPageDao().createCriteria().list();
@@ -78,11 +78,11 @@ public class PageService {
         return results;
     }
 
-    @IsAuthenticated
+    //@IsAuthenticated
     @Transaction
     @HasRole(role = "admin")
     public void deletePage(JSONObject page){
-        Page page1 = (Page) HibernateUtils.getCurrentSession().load(Page.class, page.getLong("id"));
+        Page page1 = (Page) HibernateUtils.getCurrentSession().load(Page.class, page.getLong("idPage"));
         HibernateUtils.getCurrentSession().delete(page1);
     }
 

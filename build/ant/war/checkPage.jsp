@@ -23,17 +23,17 @@
 
 <body>
 
-<% String id = request.getParameter("id");%>
+<% String idPage = request.getParameter("idPage");%>
 
 <div id="myApp" ng-app="myApp" ng-controller="myCtrl" ng-repeat="p in pages">
 
-    <h2 id="titlePage"> ${p.title} </h2>
+    <h2 id="titlePage"> {{p.title}} </h2>
     <hr id="HR">
     <div class="panel panel-default">
         <div class="panel-heading" ng-repeat="s in p.sections">
-            <h3>${s.title}</h3>
+            <h3>{{s.title}}</h3>
             <div class="panel-body" ng-repeat="c in s.components">
-                <h4>${c.text}</h4>
+                <h4>{{c.text}}</h4>
                <!-- <img src="./img/{{c.img}}"/>-->
                 <hr>
             </div>
@@ -56,18 +56,9 @@
 
             <tbody ng-app="myApp" ng-controller="myCtrl" ng-repeat="s in sections" class="clearfix">
             <tr>
-                <td>${s.title}</td>
+                <td>{{s.title}}</td>
             </tr>
             </tbody>
-
-            <form method="post" action="<%=request.getContextPath()%>/soa">
-
-                <td><input type="text" id="title" onchange="changeTitle()"></td>
-                <td>
-                    <input type="submit" onclick="saveSection()">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </td>
-            </form>
 
         </table>
     </div>

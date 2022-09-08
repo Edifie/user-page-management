@@ -41,7 +41,7 @@
         <thead>
         <tr>
             <th>Title</th>
-            <th>User ID</th>
+          <%--  <th>User ID</th>--%>
             <th>Roles</th>
         </tr>
         </thead>
@@ -49,10 +49,10 @@
         <tbody ng-app="myApp" ng-controller="myCtrl" ng-repeat="p in pages" class="clearfix">
         <tr>
             <td>${p.title}</td>
-            <td>${p.userID}</td>
+           <%-- <td>${p.userID}</td>--%>
             <td>${p.roles}</td>
 
-            <a class="button" href="<%=request.getContextPath()%>/checkPage.do"> <!-- ?id=${id} -->
+            <a class="button" href="<%=request.getContextPath()%>/editPage.do?"> <%--?id=${p.id}--%>
                Pages <span style="color:seagreen" class="glyphicon-ok"></span>
             </a> </td>
         </tr>
@@ -62,7 +62,7 @@
         <tr>
             <form method="post" action="<%=request.getContextPath()%>/soa">
                 <td><input type="text" id="title" onchange="changeTitle()"></td>
-                <td><input type="text" id="userID" onchange="changeUserID()"></td>
+               <%-- <td><input type="text" id="userID" onchange="changeUserID()"></td>--%>
 
                 <td>
                     <select ng-model="p.roles" ng-options="p for p in roles" id="roles" onchange="selectRole()"> </select>

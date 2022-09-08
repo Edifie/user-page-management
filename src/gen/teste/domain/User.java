@@ -1,5 +1,5 @@
 package teste.domain;
-// Generated Aug 18, 2022 5:55:11 AM by Hibernate Tools 3.2.0.b9
+// Generated Sep 7, 2022 6:17:29 PM by Hibernate Tools 3.2.0.b9
 
 
 
@@ -15,6 +15,7 @@ public abstract class User  implements java.io.Serializable {
      private String password;
      private String email;
      private String roles;
+     private String email2;
 
     public User() {
     }
@@ -61,6 +62,13 @@ public abstract class User  implements java.io.Serializable {
     
     public void setRoles(String roles) {
         this.roles = roles;
+    }
+    public String getEmail2() {
+        return this.email2;
+    }
+    
+    public void setEmail2(String email2) {
+        this.email2 = email2;
     }
 
 

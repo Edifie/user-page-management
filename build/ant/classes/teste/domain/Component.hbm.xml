@@ -11,7 +11,7 @@
             public abstract
         </meta>
 
-        <id name="id" type="long" column="idComponent">
+        <id name="id" type="long" column="id">
             <generator class="native"/>
         </id>
 

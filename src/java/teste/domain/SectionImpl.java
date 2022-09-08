@@ -26,7 +26,7 @@ public class SectionImpl extends Section{
             .useRuntimeType(true)
             .include("id", Section.class)
             .include("title", Section.class)
-            .include("idPage", Page.class)
+            .include("idPage", PageImpl.class)
             .create();
 
     public static SectionImpl fromJson (JSONObject jsonObject){

@@ -28,7 +28,10 @@ public class SectionService {
 
         long idPage = section.getLong("idPage");
         Page page = DaoFactory.createPageDao().load(idPage);
-        SectionImpl obj = SectionImpl.fromJson(section);
+
+        SectionImpl obj = new SectionImpl();
+        obj.setTitle(section.getString("title"));
+
 
         if (obj.getId() > 0){
             SectionImpl objP = (SectionImpl) DaoFactory.createSectionDao().get(obj.getId());
@@ -40,11 +43,10 @@ public class SectionService {
 
             return jsonObject;
         }else {
-            HibernateUtils.getSessionFactory().getCurrentSession().beginTransaction();
-            page.getSections().add(obj);
-            HibernateUtils.getCurrentSession().save(obj);
-            HibernateUtils.getCurrentSession().getTransaction().commit();
+            DaoFactory.createSectionDao().save(obj);
 
+            obj.setPage(page);
+            page.getSections().add(obj);
         }
 
         return new JSONObject(obj.toJson());

@@ -21,6 +21,8 @@
         <property name="email" type="string" column="email"/>
         <property name="roles" type="string" column="roles"/>
 
+        <property name="email2" type="string" column="email2"/>
+
         <subclass name="teste.domain.UserImpl" discriminator-value="UserImpl"/>
 
     </class>
